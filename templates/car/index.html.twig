@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion automobile{% endblock %}
+
+{% block body %}
+<h1>Gestion automobile</h1>
+<h2>Liste des voitures</h2>
+<a href="{{ path('car_add') }}">Ajouter une voiture</a>
+<table>
+    <thead>
+        <th>Nom</th>
+        <th>Marque</th>
+        <th>Année</th>
+        <th>Carburant</th>
+        <th>Couleur</th>
+        <th>Nombre de places</th>
+        <th>Date de création</th>
+        <th>Date de mise à jour</th>
+        <th>Statut</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.name }}</td>
+                <td>{{ car.brand.name }}</td>
+                <td>{{ car.year }}</td>
+                <td>{{ car.fuel }}</td>
+                <td>{{ car.color }}</td>
+                <td>{{ car.placesNumber }}</td>
+                <td>{{ car.createdAt|date("m/d/Y", "Europe/Paris") }}</td>
+                <td>{{ car.updatedAt|date("m/d/Y", "Europe/Paris") }}</td>
+                {% if car.status %}
+                    <td>Disponible</td>
+                {% else %}
+                    <td>Indisponible</td>
+                {% endif %}
+                <td>
+                    <a href="{{ path('car_edit', {id: car.id}) }}">Modifier</a>
+                    <a href="{{ path('car_delete', {id: car.id}) }}">Supprimer</a>    
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

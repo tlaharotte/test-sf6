@@ -1,0 +1,11 @@
+{{ form_start(carForm) }}
+    {{ form_row(carForm.name) }}
+    {{ form_row(carForm.brand) }}
+    {{ form_row(carForm.year) }}
+    {{ form_row(carForm.fuel) }}
+    {{ form_row(carForm.color) }}
+    {{ form_row(carForm.placesNumber) }}
+    {{ form_row(carForm.status) }}
+    {{ form_row(carForm.updatedAt) }}
+    <button type="submit">{{ button_label | default('Ajouter') }}</button>
+{{ form_end(carForm) }}
